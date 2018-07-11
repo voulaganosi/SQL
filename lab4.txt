@@ -1,0 +1,43 @@
+
+create trigger reservation3
+ after insert on reservation
+ referencing new as R
+ for each row mode db2sql
+ update reservation set R_UPDATED = current timestamp
+ where sid = R.sid AND bid = R.bid AND mid=R.mid AND r_date = R.r_date;
+
+create trigger reservation4
+ after update of sid, bid, mid, r_date on reservation
+ referencing new as R
+ for each row mode db2sql
+ update reservation set R_UPDATED = current timestamp
+ where sid = R.sid AND bid = R.bid AND mid=R.mid AND r_date = R.r_date;
+ 
+
+Δοκιμη : insert into reservation(sid, bid, mid, r_date) values(2, 1, 1, '2013-05-07')
+
+
+ενοτητα β
+
+create table NOMOSXEDIO
+  (kodikos integer not null constraint c_kodikos primary key,
+   titlos char(50));
+
+create table NOMOSXEDIO
+  (kodikos integer not null constraint n_kodikos primary key,
+   perifereia char(50), plithismos integer not null);
+
+create table BOULEUTIS
+  (kodikos integer not null constraint n_kodikos primary key,
+   onoma char(50), komma char(50), Hm_Gennisis char(50), Kod_Perif integer not null);
+
+create table KATATHETEI
+  (Kod_Bouleyti integer not null ,
+   Kod_Nom integer not null , 
+   primary key(Kod_Bouleyti, Kod_Nom));
+
+ 
+create table PSIFIZEI
+  (Kod_Bouleyti integer not null ,
+   Kod_Nom integer not null , psifos char(50) 
+   ,primary key(Kod_Bouleyti, Kod_Nom));

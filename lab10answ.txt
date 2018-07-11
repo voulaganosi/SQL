@@ -1,0 +1,49 @@
+2) update boat set purchase=500, maintenance=100 where bid = 17
+update boat set purchase=600, maintenance=50 where bid = 1
+update boat set purchase=300 where purchase is null
+
+
+3)select distinct s.sid, s.sname
+from boat b, sailor s, reservation r
+where s.sid = r.sid and r.bid = b.bid
+and b.maintenance is null
+
+
+4)select distinct s.sid, s.sname
+from boat b, sailor s, reservation r
+where s.sid = r.sid and r.bid = b.bid
+and s.rating>7
+union
+select distinct s.sid, s.sname
+from boat b, sailor s, reservation r
+where s.sid = r.sid and r.bid = b.bid
+and b.maintenance is not null
+
+
+
+5)select sum(purchase+coalesce(maintenance,0))
+from boat
+
+///select sum(purchase)+sum(maintenance)
+///from boat
+
+
+
+
+6)select sum(purchase+coalesce(maintenance,0))
+from boat b
+where maintenance is not null
+and b.bid in(	
+		select b.bid
+		from sailor s, reservation r, boat b
+		where s.sid = r.sid and r.bid = b.bid
+		and s.rating not in(		
+						select s1.rating
+						from sailor s1
+						where s1.sname = 'Γιάννης'))
+
+
+
+
+7)
+

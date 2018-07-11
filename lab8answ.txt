@@ -1,0 +1,85 @@
+2)select k.*
+from keeper k, vehicle v
+where k.id = v.keeper
+and v.id = 'SO 02 PSP'
+
+
+3)select count(*)
+from camera c
+where c.perim = 'IN'
+
+
+
+4)select c.*
+from camera c, image i
+where c.id = 10
+and c.id = i.camera
+and whn<'2007-02-28'
+
+
+
+5)select *
+from image
+where image.camera<15
+order by image.camera
+
+
+
+6)select distinct k.*
+from keeper k, permit p, vehicle v
+where k.id = v.keeper
+and p.reg = v.id
+and p.sdate = '2007-01-30'
+order by k.name desc
+
+
+7)select *
+from keeper k 
+where 5<=(select count(*)
+		from vehicle v
+		where v.keeper = k.id)
+
+or
+
+select count(*), v.keeper
+from vehicle v
+where v.keeper is not null
+group by v.keeper
+having count(*) > 4
+
+
+
+8)select k.*
+from keeper k, vehicle v, image i 
+where k.id = v.keeper
+and i.reg = v.id
+and i.camera = 3
+or i.camera = 4
+
+
+
+9)select k.*
+from keeper k, vehicle v, image i 
+where k.id = v.keeper
+and i.reg = v.id
+and i.camera = 2
+
+intersect
+
+select k.*
+from keeper k, vehicle v, image i 
+where k.id = v.keeper
+and i.reg = v.id
+and i.camera = 5
+
+
+
+
+10)select distinct v.*
+from vehicle v
+where v.id not in (select i.reg
+		from image i
+		where i.camera = 4
+		or i.camera = 5
+		or i.camera = 9
+		or i.camera = 11)

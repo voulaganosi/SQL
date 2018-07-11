@@ -1,0 +1,68 @@
+1) SELECT S.sname, S.sid
+FROM Sailor S, Reservation R, Marina M
+WHERE S.sid = R.sid
+AND R.mid = M.mid
+AND M.mid = 7
+
+2)SELECT S.sname, S.sid
+FROM Sailor S INNER JOIN Reservation R ON S.sid=R.sid INNER JOIN Marina M ON M.mid=R.mid
+WHERE M.mid = 7
+
+3)SELECT S.sname, S.sid
+FROM Sailor S JOIN Reservation R ON S.sid=R.sid JOIN Marina M ON M.mid=R.mid
+WHERE M.mid = 7
+
+4)SELECT S.sname, S.sid
+FROM Sailor S, Reservation R, Marina M
+WHERE S.sid = R.sid
+AND R.mid = M.mid
+AND M.name = 'Ουρανούπολις'
+
+
+4)a)SELECT S.sname, S.sid
+FROM Sailor S INNER JOIN Reservation R ON S.sid=R.sid INNER JOIN Marina M ON M.mid=R.mid
+WHERE M.name = 'Ουρανούπολις'
+
+4)b)SELECT S.sname, S.sid
+FROM Sailor S JOIN Reservation R ON S.sid=R.sid JOIN Marina M ON M.mid=R.mid
+WHERE M.name = 'Ουρανούπολις'
+
+
+5)SELECT *
+FROM Sailor NATURAL JOIN Reservation;    POSTGRESS 
+
+SELECT *
+FROM Sailor INNER JOIN Reservation ON sailor.SID=reservation.sid;			DATA STUDIO
+
+
+6)SELECT M.mid, M.name
+FROM Marina M, Boat B, Reservation R
+WHERE B.bid=R.bid 
+AND M.mid=R.mid
+AND B.color='Red'
+
+
+7)SELECT S.sid, S.sname
+FROM Sailor S LEFT OUTER JOIN Reservation R ON S.sid = R.sid
+WHERE R.sid IS NULL
+
+
+
+8)SELECT M.mid, M.name
+FROM Marina M, Boat B
+WHERE  B.color = 'Red'
+UNION
+SELECT M.mid, M.name
+FROM Marina M, Sailor S LEFT OUTER JOIN Reservation R ON S.sid = R.sid
+WHERE R.sid IS NULL
+
+
+
+9)SELECT S.sname, S1.sname
+FROM Sailor S, Sailor S1
+WHERE S.rating>=8
+AND S1.rating>=8
+AND S1.sid>S.sid
+
+
+10)

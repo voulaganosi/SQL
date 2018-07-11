@@ -1,0 +1,46 @@
+1. INSERT INTO RESERVATION(SID, BID, MID, R_DATE) VALUES(13, 88, 5, '2013-10-19')
+
+2.INSERT INTO RESERVATION(SID, BID, MID, R_DATE) VALUES(15, 32, 33, '2013-10-21')
+Run SQL
+
+INSERT INTO RESERVATION(SID, BID, MID, R_DATE) VALUES(15, 32, 33, '2013-10-21')
+The insert or update value of the FOREIGN KEY "DB2ADMIN.RESERVATION.F_KEY2" is not equal to any value of the parent key of the parent table.. SQLCODE=-530, SQLSTATE=23503, DRIVER=3.58.81
+ 
+Failed queries => 1
+ 
+Total execution time => 0 ms
+
+
+3.INSERT INTO BOAT(BID, BNAME, COLOR) VALUES(32, 'Γαλανούλα', 'Blue')
+
+4.(2) ok
+
+5.///SAILOR-->COLUMMS-->AGE-->CONSTRAINS(ΑΛΛΑΓΗ ΤΟΥ ΕΥΡΟΥΣ ΤΙΜΩΝ ΤΗΣ ΗΛΙΚΙΑΣ//
+  INSERT INTO SAILOR(SID, SNAME, RATING, AGE) VALUES(3, 'Φανούρης', 7, 19)
+
+6.DELETE FROM SAILOR
+WHERE SID=1 AND SNAME='Χριστίνα' AND RATING=10 AND AGE=17.0
+
+7.DELETE FROM RESERVATION
+WHERE SID=19
+
+8.DELETE FROM BOAT
+WHERE COLOR='Light Green' ///ΕΧΕΙ RESTRICT O RESERVATION ΟΠΟΤΕ ΔΝ ΕΙΝΑΙ ΔΥΝΑΤΗ Η ΔΙΑΓΡΑΦΗ
+
+9.DELETE FROM MARINA
+WHERE NAME='Ποσείδι'
+
+10.
+
+11.BAZEI DEFAULT TIMI STO CONSTRAINS
+
+12.
+
+13.CREATE TABLE TYPOS
+(K_TYPOU INTEGER not null PRIMARY KEY constraint c_periorismos check (K_TYPOU between 1 and 13),
+ PERIGRAFH VARCHAR(40))
+
+ALTER TABLE BOAT
+	ADD k_typou INTEGER REFERENCES Typos(k_typou)
+
+....

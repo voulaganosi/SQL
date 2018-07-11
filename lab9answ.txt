@@ -1,0 +1,16 @@
+A3) select camera
+from image i
+where i.reg='...'
+
+expept
+
+select camera
+from image i
+where i.reg in(...)
+
+
+
+
+F3)select distinct i1.camera, i2.camera
+from image i1, image i2
+where i1.reg = i2.reg and i1.camera>i2.camera

@@ -1,0 +1,70 @@
+oracle :
+workspace : students
+username : dblab_23
+password : dbuser24197
+
+
+1)SELECT S.sname, S.sid
+FROM Sailor S, Reservation R
+WHERE S.sid = R.sid
+AND R.mid = 7
+
+
+2)SELECT S.sname, S.sid
+FROM Sailor S inner join Reservation R on S.sid=R.sid
+WHERE R.mid = 7
+
+
+3)SELECT S.sname, S.sid
+FROM Sailor S join Reservation R on S.sid=R.sid
+WHERE R.mid = 7
+
+
+4)SELECT S.sname, S.sid
+FROM Sailor S, Reservation R, Marina M
+WHERE S.sid = R.sid
+AND M.name = 'Ouranoupolis'
+
+a)SELECT S.sname, S.sid
+FROM Sailor S inner join Reservation R on S.sid = R.sid inner join Marina M on R.mid = M.mid
+WHERE M.name = 'Ouranoupolis'
+
+
+b)SELECT S.sname, S.sid
+FROM Sailor S join Reservation R on S.sid = R.sid join Marina M on R.mid = M.mid
+WHERE M.name = 'Ouranoupolis'
+
+
+5)SELECT *
+FROM Sailor NATURAL JOIN Reservation εκτελειτε στην oracle
+
+6)select M.name, M.mid
+from Marina M, Boat B, Reservation R
+where R.mid = M.mid
+and R.bid = B.bid
+and B.color = 'Red'
+
+
+7)select S.sname, S.sid
+from Sailor S left outer join Reservation R on S.sid = R.sid
+where R.sid is null
+
+
+
+8)select M.name, M.mid
+from marina M join reservation R on R.mid = M.mid 
+where R.sid is null
+union
+select M.name, M.mid
+from marina M join reservation R on R.mid = M.mid join Boat B on R.bid = B.bid
+where B.color = 'Red'
+
+
+9)select distinct M1.name, M1.mid, M2.name, M2.mid
+from marina M1, marina M2, Reservation R, Boat B
+where M1.mid > M2.mid
+and R.mid = M1.mid
+and B.color = 'Red'
+
+
+10)

@@ -1,0 +1,45 @@
+4)i-j-k δεν γινονται με το σχεσιακο μοντελο
+
+5)7)SELECT S.sid, S.sname
+FROM Sailor S LEFT OUTER JOIN Reservation R ON S.sid = R.sid
+WHERE R.sid IS NULL
+
+
+
+
+9)SELECT S.sname, S1.sname
+FROM Sailor S, Sailor S1
+WHERE S.rating>=8
+AND S1.rating>=8
+AND S1.sid>S.sid
+
+
+8)SELECT M.mid, M.name
+FROM Marina M, join Reservation R using(sid) join Boat B using (bid)
+WHERE  B.color = 'Red'
+UNION
+SELECT M.mid, M.name
+FROM Marina M, Sailor S LEFT OUTER JOIN Reservation R ON S.sid = R.sid
+WHERE R.sid IS NULL
+
+
+9)*
+select M.*, M2.*
+from marina M join reservation R using(sid)
+join boat B using(bid)
+join marina M2 on (M2.mid >M.mid)
+join reservation R2 on (R2.mid = M2.mid)
+join boat B2 on (B2.bid = R2.bid)
+where B.color = 'Red' and B2.color = 'Red';
+
+
+select * 
+from(select distinct N.*
+from marina m join reservation r using (mid)
+join boat b using(bid)
+where b.color = 'red') as t1,
+(select distinct M.*
+from marina m join reservation R using (sid)
+join boat b using (bid)
+where b.color = 'red') as t2
+where t1.sid>t2.sid

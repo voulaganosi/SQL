@@ -1,0 +1,39 @@
+1)create view games_plithos
+as
+select g.code, g.level, g.sport, count(*) as plithos
+from games g, participates p
+where g.code = p.game
+group by g.code, g.level, g.sport
+
+
+
+2)create view sport_plithos
+as
+select sport, count(*) as plithos
+from games g, participates p
+where g.code = p.game
+group by sport
+
+
+
+
+3)select distinct a.name, g.sport
+from athlete a, participates p, games g
+where a.code = p.athlete
+and p.game = g.code
+and g.sport in(
+		select sport
+		from sport_plithos
+		where plithos > ANY(select plithos
+				from sport_plithos))
+order by g.sport desc, a.name asc
+
+
+
+
+4)create function raise_weight(int, varchar (40)) 
+returns void AS
+$$
+update athlete set weight = weight +$1
+where name = $2
+$$ LANGUAGE SQL; 
